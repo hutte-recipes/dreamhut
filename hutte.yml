@@ -6,7 +6,8 @@ push_script: |
     set -euo pipefail # fail fast
     sf project deploy start --wait 60 --ignore-conflicts
     sf org assign permset --name dreamhouse
-    sf data tree import -p data/sample-data-plan.json
+    echo y | sf plugins install sfdmu
+    sf sfdmu run -p data/sfdmu -s csvfile -u "${SALESFORCE_USERNAME}" --filelog 0 -n
 custom_scripts:
     # This scripts will be displayed on the scratch org's page
     scratch_org:

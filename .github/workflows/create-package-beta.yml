@@ -24,5 +24,5 @@ jobs:
             - name: Create package beta
               run: |
                   # increment minor version, fallback to 0.1.0
-                  nextReleaseVersion="$(sf package version list --packages "ISVShowcase" --released --order-by MajorVersion,MinorVersion,PatchVersion --json | yq '.result[-1] | ( .MajorVersion + "." + ( .MinorVersion + 1 ) + "." + .PatchVersion )' || echo "0.1.0")"
-                  sf package version create --package ISVShowcase --version-number "${nextReleaseVersion}.NEXT" --installation-key-bypass --code-coverage --wait 30
+                  nextReleaseVersion="$(sf package version list --packages "Dreamhut" --released --order-by MajorVersion,MinorVersion,PatchVersion --json | yq '.result[-1] | ( .MajorVersion + "." + ( .MinorVersion + 1 ) + "." + .PatchVersion )' || echo "0.1.0")"
+                  sf package version create --package Dreamhut --version-number "${nextReleaseVersion}.NEXT" --installation-key-bypass --code-coverage --wait 30

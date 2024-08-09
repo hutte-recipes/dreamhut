@@ -25,7 +25,7 @@ jobs:
                   npm install --global @salesforce/cli
             - name: Authenticate target org
               run: |
-                  echo "${{ secrets.AUTH_URL_TRIAL_DEMO }}" | sf org login sfdx-url --set-default --sfdx-url-stdin
+                  echo "${{ secrets.SFDX_AUTH_URL_TARGETORG }}" | sf org login sfdx-url --set-default --sfdx-url-stdin
             - name: Install package version in target org
               run: |
                   sf package install --no-prompt --publish-wait 20 --wait 60 --package "${{ inputs.packageVersion }}"

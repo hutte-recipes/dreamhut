@@ -1,0 +1,40 @@
+name: Create Package Version
+
+on:
+    workflow_dispatch:
+    workflow_call:
+        outputs:
+            packageVersionId:
+                description: 'If a package version has been published, this is the package version id (04t)'
+                value: ${{ jobs.default.outputs.packageVersionId }}
+            version:
+                description: 'If a package version has been published, this is the package version number (major.minor.patch.build)'
+                value: ${{ jobs.default.outputs.version }}
+
+jobs:
+    default:
+        name: Create Package Version
+        runs-on: ubuntu-latest
+        outputs:
+            packageVersionId: ${{ steps.create-package-version.outputs.packageVersionId }}
+            version: ${{ steps.create-package-version.outputs.version }}
+        steps:
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Setup Salesforce CLI
+              run: |
+                  npm install --global @salesforce/cli
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Authenticate Dev Hub org
+              run: |
+                  echo "${{ secrets.SFDX_AUTH_URL_DEVHUB }}" | sf org login sfdx-url --set-default-dev-hub --sfdx-url-stdin
+            - id: create-package-version
+              name: Create package version
+              run: |
+                  npx -y -p @semantic-release/exec -p semantic-release semantic-release
+                  # packageVersionId and version will be set as output for the GH action (see release.config.mjs)
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

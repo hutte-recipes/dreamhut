@@ -1,0 +1,6 @@
+$$Email$LastName$FirstName,Account.Name,AssistantName,AssistantPhone,Birthdate,CleanStatus,Department,Description,Email,EmailBouncedDate,EmailBouncedReason,Fax,FirstName,HomePhone,Individual.Name,Jigsaw,LastName,LeadSource,MailingCity,MailingCountry,MailingGeocodeAccuracy,MailingLatitude,MailingLongitude,MailingPostalCode,MailingState,MailingStreet,MobilePhone,OtherCity,OtherCountry,OtherGeocodeAccuracy,OtherLatitude,OtherLongitude,OtherPhone,OtherPostalCode,OtherState,OtherStreet,Phone,ReportsTo.$$Email$LastName$FirstName,Salutation,Title
+annaj@mymail.com;Jones;Anna,,,,,Pending,,,annaj@mymail.com,,,,Anna,,,,Jones,,,,,,,,,,,,,,,,,,,,617-555-0181,,,
+bholmes@goodmail.com;Holmes;Brad,,,,,Pending,,,bholmes@goodmail.com,,,,Brad,,,,Holmes,,,,,,,,,,,,,,,,,,,,617-555-0143,,,
+jconnor@goodmail.com;Connor;John,,,,,Pending,,,jconnor@goodmail.com,,,,John,,,,Connor,,,,,,,,,,,,,,,,,,,,617-555-0133,,,
+julywalker@brain.com;Walker;July,,,,,Pending,,,julywalker@brain.com,,,,July,,,,Walker,,,,,,,,,,,,,,,,,,,,617-555-0170,,,
+leslie@pentagon.com;Martin;Leslie,,,,,Pending,,,leslie@pentagon.com,,,,Leslie,,,,Martin,,,,,,,,,,,,,,,,,,,,617-555-0112,,,

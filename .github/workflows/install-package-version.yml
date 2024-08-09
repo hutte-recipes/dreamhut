@@ -1,0 +1,31 @@
+name: Install Package Version
+
+on:
+    workflow_dispatch:
+        inputs:
+            packageVersion:
+                description: 'ID (starts with 04t) or alias of the package version to install'
+                required: true
+    workflow_call:
+        inputs:
+            packageVersion:
+                type: string
+                description: 'ID (starts with 04t) or alias of the package version to install'
+                required: true
+
+jobs:
+    default:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Setup Salesforce CLI
+              run: |
+                  npm install --global @salesforce/cli
+            - name: Authenticate target org
+              run: |
+                  echo "${{ secrets.AUTH_URL_TRIAL_DEMO }}" | sf org login sfdx-url --set-default --sfdx-url-stdin
+            - name: Install package version in target org
+              run: |
+                  sf package install --no-prompt --publish-wait 20 --wait 60 --package "${{ inputs.packageVersion }}"

@@ -1,0 +1,20 @@
+{
+    "objects": [
+        {
+            "query": "SELECT readonly_false FROM Hutte__Broker__c ORDER BY Name ASC",
+            "operation": "Upsert",
+            "externalId": "Hutte__Email__c"
+        },
+        {
+            "query": "SELECT readonly_false FROM Hutte__Property__c ORDER BY Name ASC",
+            "operation": "Upsert",
+            "externalId": "Name;Hutte__Location__Longitude__s;Hutte__Location__Latitude__s"
+        },
+        {
+            "query": "SELECT readonly_false FROM Contact ORDER BY Email,LastName,FirstName ASC",
+            "operation": "Upsert",
+            "externalId": "Email;LastName;FirstName"
+        }
+    ],
+    "excludeIdsFromCSVFiles": true
+}

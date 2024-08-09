@@ -1,0 +1,19 @@
+<template>
+    <a onclick={handlePropertySelected} title={property.Name}>
+        <div class="tile" style={backgroundImageStyle}>
+            <div class="lower-third slds-var-p-horizontal_x-small slds-var-p-vertical_xx-small slds-text-color_inverse">
+                <h1 class="truncate slds-text-heading_small">
+                    <strong>{property.Hutte__City__c} • </strong>{property.Name}
+                </h1>
+                <p>Beds: {property.Hutte__Beds__c} - Baths: {property.Hutte__Baths__c}</p>
+                <p>
+                    <lightning-formatted-number
+                        format-style="currency"
+                        currency-code="USD"
+                        value={property.Hutte__Price__c}
+                    ></lightning-formatted-number>
+                </p>
+            </div>
+        </div>
+    </a>
+</template>

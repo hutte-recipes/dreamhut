@@ -1,0 +1,21 @@
+version: '1.0'
+
+# Shell script to run when pushing the source code to the scratch orgs.
+# It's a great place to automate tasks like permission set assignments or data loading.
+push_script: |
+    set -euo pipefail # fail fast
+    sf project deploy start --wait 60 --ignore-conflicts
+    sf org assign permset --name dreamhouse
+    sf data tree import -p data/sample-data-plan.json
+custom_scripts:
+    # This scripts will be displayed on the scratch org's page
+    scratch_org:
+        'Export Data':
+            description: 'Export data using SFDMU'
+            run: |
+                set -euo pipefail # fail fast
+                echo y | sf plugins install sfdmu
+                sf sfdmu run -p data/sfdmu -s "${SALESFORCE_USERNAME}" -u csvfile --filelog 0 -n
+                git add data
+                git commit -m "modified data"
+                git push origin "${HUTTE_GIT_SOURCE_BRANCH}"

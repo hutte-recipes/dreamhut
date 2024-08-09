@@ -1,0 +1,28 @@
+name: Create Package Beta
+
+on:
+    workflow_dispatch:
+    workflow_call:
+
+jobs:
+    default:
+        name: Create Package Beta
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Setup Salesforce CLI
+              run: |
+                  npm install --global @salesforce/cli
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Authenticate Dev Hub org
+              run: |
+                  echo "${{ secrets.SFDX_AUTH_URL_DEVHUB }}" | sf org login sfdx-url --set-default-dev-hub --sfdx-url-stdin
+            - name: Create package beta
+              run: |
+                  # increment minor version, fallback to 0.1.0
+                  nextReleaseVersion="$(sf package version list --packages "ISVShowcase" --released --order-by MajorVersion,MinorVersion,PatchVersion --json | yq '.result[-1] | ( .MajorVersion + "." + ( .MinorVersion + 1 ) + "." + .PatchVersion )' || echo "0.1.0")"
+                  sf package version create --package ISVShowcase --version-number "${nextReleaseVersion}.NEXT" --installation-key-bypass --code-coverage --wait 30

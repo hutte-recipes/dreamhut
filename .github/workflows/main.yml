@@ -1,0 +1,22 @@
+name: Main
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - force-app/**
+
+jobs:
+    create-package-version:
+        name: Run Create Package Version Workflow
+        uses: ./.github/workflows/create-package-version.yml
+        secrets: inherit
+    install-package-version:
+        name: Run Install Package Version Workflow
+        uses: ./.github/workflows/install-package-version.yml
+        needs: create-package-version
+        if: ${{ needs.create-package-version.outputs.packageVersionId != '' }}
+        with:
+            packageVersion: ${{ needs.create-package-version.outputs.packageVersionId }}
+        secrets: inherit

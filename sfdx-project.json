@@ -1,0 +1,19 @@
+{
+    "packageDirectories": [
+        {
+            "versionNumber": "0.0.0.NEXT",
+            "path": "force-app",
+            "default": false,
+            "package": "Dreamhut",
+            "versionDescription": "A second generation managed package based on the Salesforce Dreamhouse sample app",
+            "ancestorVersion": "HIGHEST"
+        }
+    ],
+    "name": "Dreamhut",
+    "namespace": "Hutte",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "61.0",
+    "packageAliases": {
+        "Dreamhut": "0HoS7000000015lKAA"
+    }
+}

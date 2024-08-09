@@ -3,7 +3,7 @@
         {
             "versionNumber": "0.0.0.NEXT",
             "path": "force-app",
-            "default": false,
+            "default": true,
             "package": "Dreamhut",
             "versionDescription": "A second generation managed package based on the Salesforce Dreamhouse sample app",
             "ancestorVersion": "HIGHEST"
